@@ -8,12 +8,14 @@
   --veryDarkBlue: hsl(234, 12%, 34%);
   --grayishBlue: hsl(229, 6%, 66%);
   --veryLightGray: hsl(0, 0%, 98%);
+  --white: white;
 }
 
 body {
-  margin: 1rem;
   padding: 0;
+  margin: 1rem;
   box-sizing: border-box;
+  background-color: var(--veryLightGray);
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   display: flex;
@@ -21,10 +23,32 @@ body {
   align-items: center;
 }
 
+/* Header */
+
 header {
   text-align: center;
 }
 
+h1 {
+  font-weight: 200;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+p {
+  color: var(--grayishBlue);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+/* 🔢 Grid */
 .grid {
   display: grid;
   grid-template-areas: "one" "two" "three" "four";
@@ -33,39 +57,46 @@ header {
 .grid > .card:nth-child(1) {
   grid-area: one;
   grid-row-start: 2;
+  border-top: 8px solid var(--cyan);
 }
 .grid > .card:nth-child(2) {
   grid-area: two;
+  border-top: 8px solid var(--red);
 }
 .grid > .card:nth-child(3) {
   grid-area: three;
+  border-top: 8px solid var(--orange);
 }
 .grid > .card:nth-child(4) {
   grid-area: four;
   grid-row-start: 2;
+  border-top: 8px solid var(--blue);
 }
 
-@media only screen and (width >= 1165px) {
-  .grid {
-    grid-template-areas: "one two four" "one two four" "one three four" "one three four";
-  }
-}
-
+/* 🎴 Card */
 .card {
-  width: 358px;
-  height: 250px;
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
   border-radius: 10px;
-  border-top: 5px solid var(--cyan);
   margin: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: hsla(234, 12%, 34%, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.card > p {
+  padding-right: 2rem;
+}
+
+img {
+  width: 60px;
+  padding-top: 1rem;
+  align-self: flex-end;
 }
 
 /* 👣 Footer */
 .attribution {
-  /* position: absolute; */
-  /* position: fixed;
-  bottom: 0;
-  z-index: 99; */
   padding-top: 2rem;
   font-size: 14px;
   text-align: center;
@@ -76,14 +107,41 @@ header {
 }
 
 /* 📱 Media Query */
+
+/* Desktop 💻 */
+@media only screen and (width >= 1165px) {
+  .grid {
+    grid-template-areas: "one two four" "one two four" "one three four" "one three four";
+  }
+
+  /* moved width and height property to fix the grid area stretch issue */
+  .card {
+    width: 358px;
+    height: 250px;
+  }
+
+  .para {
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Mobile 📱 */
+
 @media only screen and (width <= 1165px) {
   .card {
     max-width: 358px;
-    max-height: 250px;
+    height: 250px;
   }
 
   .grid > .card:nth-child(1),
   .grid > .card:nth-child(4) {
     grid-row-start: auto;
+  }
+
+  .para {
+    margin: 0 1rem;
+    padding-bottom: 2rem;
   }
 }
