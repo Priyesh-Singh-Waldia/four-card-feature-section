@@ -11,22 +11,62 @@
 }
 
 body {
-  min-height: 100vh;
-  margin: 0;
+  margin: 1rem;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: "one" "two" "three" "four";
+}
+
+.grid > .card:nth-child(1) {
+  grid-area: one;
+  grid-row-start: 2;
+}
+.grid > .card:nth-child(2) {
+  grid-area: two;
+}
+.grid > .card:nth-child(3) {
+  grid-area: three;
+}
+.grid > .card:nth-child(4) {
+  grid-area: four;
+  grid-row-start: 2;
+}
+
+@media only screen and (width >= 1165px) {
+  .grid {
+    grid-template-areas: "one two four" "one two four" "one three four" "one three four";
+  }
+}
+
+.card {
+  width: 358px;
+  height: 250px;
+  background-color: red;
+  border-radius: 10px;
+  border-top: 5px solid var(--cyan);
+  margin: 1rem;
 }
 
 /* 👣 Footer */
 .attribution {
-  position: absolute;
+  /* position: absolute; */
+  /* position: fixed;
   bottom: 0;
-  z-index: 99;
+  z-index: 99; */
+  padding-top: 2rem;
   font-size: 14px;
   text-align: center;
   font-weight: 600;
@@ -36,12 +76,14 @@ body {
 }
 
 /* 📱 Media Query */
-@media only screen and (width <= 699px) {
-  body {
-    flex-direction: column;
+@media only screen and (width <= 1165px) {
+  .card {
+    max-width: 358px;
+    max-height: 250px;
   }
 
-  footer {
-    display: none;
+  .grid > .card:nth-child(1),
+  .grid > .card:nth-child(4) {
+    grid-row-start: auto;
   }
 }
